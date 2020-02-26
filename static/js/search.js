@@ -5,15 +5,24 @@ function csrfSafeMethod(method) {
 
 function createCard(article){
     return `
-        <div class="card">
+        <div class="card display-article">
             <div class="card-header">
-                ${ article.title }
+                <i class="far fa-newspaper"></i> ${ article.title }
             </div>
             <div class="card-body">
                 ${ article.content }
             </div>
         </div>
     `
+}
+
+var add_article = function(){
+    let article_form = $('.add-article-form');
+    article_form.toggle()
+    article_form.css('overflow', 'visible');
+    article_form.animate({
+        'height': '370px'
+    }, 'slow')
 }
 
 var start_search = function(){
@@ -30,11 +39,13 @@ var start_search = function(){
                     $('.search-results').html(
                         `<div class="no-results">
                             No results found for keyword "${keyword}". 
-                            <a href="/articles/new">Add Article</a>
+                            <a href="#" id="add_article">Add Article</a>
                         </div>`);
+                    $('#add_article').click(add_article);
                 } else{
-                    for(var i = 0; i < articles.records.length; i++){
-
+                    for(var i = 0; i < articles.results.length; i++){
+                        var card = createCard(articles.results[i]);
+                        $('.search-results').append($(card));
                     }
                 }
             }
@@ -61,5 +72,13 @@ $(document).ready(function(){
         if(event.key == 'Enter'){
             start_search();
         }
+    })
+
+    $('#btn-cancel-article').click(function(){
+        $('.add-article-form').css({
+            'overflow':'hidden',
+            'height':'0px',
+        }).toggle()
+        
     })
 })

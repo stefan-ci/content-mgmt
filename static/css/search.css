@@ -16,7 +16,7 @@ div.container.search_container > div > div > div {
     margin-bottom: 0px!important;
 }
 
-input.form-control {
+div.container.search_container > div > div.search-bar > div > div > input.form-control {
     padding:25px;
     font-size:1.3rem;
 }
@@ -36,4 +36,22 @@ input.form-control {
 
 div.container.search_container > div > div.search-results {
     text-align: left;
+}
+
+div.container.search_container > div > div.add-article-form > .card {
+    padding:0px;
+    text-align: left;
+}
+div.container.search_container > div > div.add-article-form {
+    padding:20px;
+    padding-left:50px;
+    padding-right:50px;
+    overflow:hidden;
+    display:none;
+    height:0px;
+}
+
+div.container.search_container > div > div > div.display-article {
+    padding:0px;
+    margin-top:10px;
 }
