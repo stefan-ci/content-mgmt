@@ -30,7 +30,7 @@ var start_search = function(){
                     $('.search-results').html(
                         `<div class="no-results">
                             No results found for keyword "${keyword}". 
-                            <a href="/article/new">Add Article</a>
+                            <a href="/articles/new">Add Article</a>
                         </div>`);
                 } else{
                     for(var i = 0; i < articles.records.length; i++){

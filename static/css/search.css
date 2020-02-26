@@ -33,3 +33,7 @@ input.form-control {
 .input-group-append > button {
     width:100%
 }
+
+div.container.search_container > div > div.search-results {
+    text-align: left;
+}
