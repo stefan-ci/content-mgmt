@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container search_container">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Use Keywords to search">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="search-btn">Button</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+.search_container {
+    margin-top:20px;
+}
+
+div.container.search_container > div > div {
+    text-align: center;
+}
+
+div.container.search_container > div > div > div {
+
+    padding:20px;
+
+}
+
+.mb-3, .my-3 {
+    margin-bottom: 0px!important;
+}
+
+input.form-control {
+    padding:25px;
+    font-size:1.3rem;
+}
+
+#search-btn {
+
+    font-size:1.3rem;
+}
+
+.input-group-append {
+    width:20%
+}
+
+.input-group-append > button {
+    width:100%
+}
