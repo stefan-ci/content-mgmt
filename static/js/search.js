@@ -7,10 +7,10 @@ function createCard(article){
     return `
         <div class="card display-article">
             <div class="card-header">
-                <i class="far fa-newspaper"></i> ${ article.title }
+                <i class="far fa-newspaper"></i>
+                <span></span>
             </div>
             <div class="card-body">
-                ${ article.content }
             </div>
         </div>
     `
@@ -23,6 +23,7 @@ var add_article = function(){
     article_form.animate({
         'height': '370px'
     }, 'slow')
+    $('#article-title').val($('#search-input').val());
 }
 
 var start_search = function(){
@@ -43,9 +44,16 @@ var start_search = function(){
                         </div>`);
                     $('#add_article').click(add_article);
                 } else{
+                    var listing;
+                    $('.search-results').html('');
                     for(var i = 0; i < articles.results.length; i++){
-                        var card = createCard(articles.results[i]);
-                        $('.search-results').append($(card));
+                        listing = null;
+                        var article = articles.results[i];
+                        var card = createCard();
+                        var results = $('.search-results');
+                        results.append(card);
+                        results.children().last().find('.card-header > span').text(article.title);
+                        results.children().last().find('.card-body').text(article.content);
                     }
                 }
             }
@@ -79,6 +87,8 @@ $(document).ready(function(){
             'overflow':'hidden',
             'height':'0px',
         }).toggle()
+        $('.article-title').val('');
+
         
     })
 })
