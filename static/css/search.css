@@ -26,8 +26,17 @@ div.container.search_container > div > div.search-bar > div > div > input.form-c
     font-size:1.3rem;
 }
 
+#add-btn {
+    padding-left:20px;
+    padding-right:20px;
+    font-size: 130%;
+}
+
 .input-group-append {
     width:20%
+}
+.input-group-append.last-btn {
+    width:auto;
 }
 
 .input-group-append > button {

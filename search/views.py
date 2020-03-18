@@ -31,3 +31,7 @@ def add_article(request):
     else:
         redirect('/admin')
     return redirect('/')
+
+
+def dnd(request):
+    return render(request, 'dnd.html')

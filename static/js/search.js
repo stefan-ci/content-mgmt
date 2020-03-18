@@ -3,6 +3,32 @@ function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
+function catchSubmit(event){
+    let article_content = $('#article-content').val();
+    var match = /\r|\n/.exec(article_content);
+    if (match) {
+        event.preventDefault();
+        let new_content = article_content.replace(/\r|\n/g, '[line-br]')
+        //new_content = new_content.replace(/\r|\n/, '[line-br]')
+        $('#article-content').val(new_content);
+        $(this).submit();
+    }
+}
+
+function addTabs(event){
+    if(event.key =='Tab'){
+        event.preventDefault();
+        let cursor = $('#article-content').prop("selectionStart");
+        let article_content = $('#article-content').val();
+        let new_content = article_content.replace(/\n/, '\n').replace(/\r/, '\r')
+        console.log(new_content)
+        let article_array = article_content.split('');
+        article_array[cursor] = '    '
+        $('#article-content').val(article_array.join(''))
+    }
+}
+
+
 function createCard(article){
     return `
         <div class="card display-article">
@@ -54,6 +80,8 @@ var start_search = function(){
                         results.append(card);
                         results.children().last().find('.card-header > span').text(article.title);
                         results.children().last().find('.card-body').text(article.content);
+                        replaceSpecial(results.children().last().find('.card-body'));
+
                     }
                 }
             }
@@ -66,7 +94,6 @@ var start_search = function(){
 }
 
 $(document).ready(function(){
-    console.log(window.csrftoken)
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -74,7 +101,7 @@ $(document).ready(function(){
             }
         }
     });
-
+    $('#add-btn').click(add_article);
     $('#search-btn').click(start_search);
     $('#search-input').keyup(function(event){
         if(event.key == 'Enter'){
@@ -88,7 +115,18 @@ $(document).ready(function(){
             'height':'0px',
         }).toggle()
         $('.article-title').val('');
-
-        
     })
+
+    $('#article-content').keydown(addTabs);
+
+    $('#post-article').submit(catchSubmit);
 })
+
+function replaceSpecial(element){
+    var content = element.html();
+    console.log(content)
+    let new_content = content.replace(/\[c\]/g,'<code>\n').replace(/\[[/]c\]/g,'</code>');
+    new_content = new_content.replace(/\[line\-br\]/g,'<br />')
+    console.log(new_content);
+    element.html(new_content)
+}
