@@ -39,5 +39,5 @@ plugins:
 # Rules #
 #########
 rules: {
-  exclude: /static/fontawesome/
+  ignore: ['./static/fontawesome/**/*.js', './static/fontawesome/**/*.css']
 }
